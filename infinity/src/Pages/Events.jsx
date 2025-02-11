@@ -7,7 +7,7 @@ import slides from "../data/slides.json";
 import icon2 from '../data/arrowForward.png';
 import icon1 from '../data/arrowBack.png';
 
-// Import 4 images
+// Import all images of events
 import I1 from "../data/1.jpeg";
 import I2 from "../data/2.jpeg";
 import I3 from "../data/3.jpeg";
@@ -17,6 +17,11 @@ import I4 from "../data/4.png";
 
 const Events = () => {
   const images = [I1, I2, I3, I4]; // 4 images in total
+  const event=[
+    {name:"E1",max:1,min:1},
+    {name:"E2",max:3,min:1},
+    {name:"E3",max:4,min:1},
+    {name:"E4",max:6,min:1}];   // define name and min ,max members of event in total
   const data = slides.slides; // Assuming this is an array of text for each image
   console.log(data);
 
@@ -89,7 +94,9 @@ const Events = () => {
         <p className="paragraph" style={{ whiteSpace: "pre-wrap" }}>
           {data[(startIndex + 1) % data.length].details}
         </p>
-        <a href="/form?event=codecraft"><button>register</button></a>
+        <a href= {`/form?event=${event[(startIndex+1) % event.length].name}&id1=${event[(startIndex+1) % event.length].max+Math.floor(Math.random()*100000)*event.length}&id2=${event[(startIndex+1) % event.length].min+Math.floor(Math.random()*100000)*event.length}&id3=${event.length+10}`} ><button
+        className="mt-10 border border-blue-500 hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded focus:outline-none"
+        >Register</button></a>
       </div>
     </div>
   );

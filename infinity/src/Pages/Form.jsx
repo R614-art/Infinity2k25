@@ -4,12 +4,14 @@ import { useLocation } from 'react-router-dom';
 function Form() {
     const query = new URLSearchParams(useLocation().search);
     const event = query.get('event');
-
+    const len=query.get('id3')-10;
+    const max = query.get('id1')%len;
+    const min= query.get('id2')%len;
+    
     const [members, setMembers] = useState([{ id: 1, name: '', email: '' }]);
     const [image, setImage] = useState(null);
     const [imageUrl, setImageUrl] = useState(""); 
 
-    var max=3,min=1 // define max and min 
     // Replace with your actual ImgBB API Key
     const IMGBB_API_KEY = "735c7c4573006a1488d0ebbcd20fa89b";
 
@@ -20,7 +22,7 @@ function Form() {
     };
 
     const handleAdd = () => {
-        if(members.length<=max)
+        if(members.length<max)
         setMembers([...members, { id: members.length + 1, name: '', email: '' }]);
     };
     const handleRemove= ()=>{
@@ -112,7 +114,7 @@ function Form() {
                             />
                             <label className="text-white mt-2">Email Id:</label>
                             <input 
-                                type="text" 
+                                type="email" 
                                 value={member.email}
                                 onChange={(e) => handleChange(member.id, 'email', e.target.value)}
                                 required
