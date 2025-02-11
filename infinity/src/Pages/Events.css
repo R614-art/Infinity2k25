@@ -27,6 +27,11 @@
 input::file-selector-button{
     color: white;
     background-color: transparent;
-    border-radius: 1rem;
+    border-radius: 2rem;
 
+
+}
+#file-button:hover
+{
+    cursor: pointer;
 }
